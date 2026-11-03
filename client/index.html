@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#1f2552" />
+    <meta
+      name="description"
+      content="Track your salary, EMIs and daily spending in rupees, and see how much you can still spend today."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Daily Expense Tracker</title>
+    <!-- Applies the saved theme before first paint so there is no light/dark flash.
+         It is a separate file (not inline) because the Content-Security-Policy blocks inline scripts. -->
+    <script src="/theme-init.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

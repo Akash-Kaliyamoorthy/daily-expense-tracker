@@ -1,0 +1,90 @@
+@import '@fontsource-variable/fraunces/index.css';
+/* The combined weight files split the font into subsets with a unicode-range each, so the
+   browser only downloads what a page uses. The rupee sign (U+20B9) lives in the latin-ext
+   subset, which is NOT in plain "latin": importing only latin-*.css would drop the ₹. */
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-paper font-sans text-ink-900 antialiased;
+    /* Figures line up in columns: essential for money. */
+    font-variant-numeric: tabular-nums;
+  }
+  html.dark body {
+    @apply bg-ink-950 text-ink-50;
+  }
+  h1,
+  h2 {
+    @apply font-display;
+    font-variation-settings:
+      'SOFT' 50,
+      'WONK' 0;
+  }
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-ink-500;
+  }
+  html.dark :focus-visible {
+    @apply outline-marigold-400;
+  }
+  ::selection {
+    @apply bg-marigold-300 text-ink-900;
+  }
+}
+
+@layer components {
+  /* Flat, bordered panel: the basic container. Intentionally shadowless. */
+  .panel {
+    @apply rounded-panel border border-ink-100 bg-white;
+  }
+  html.dark .panel {
+    @apply border-night-line bg-night-card;
+  }
+  /* Muted secondary text. */
+  .muted {
+    @apply text-ink-500;
+  }
+  html.dark .muted {
+    @apply text-ink-300;
+  }
+  /* A ledger rule: lists are separated by hairlines, not stacked in cards. */
+  .rule {
+    @apply border-b border-dashed border-ink-200;
+  }
+  html.dark .rule {
+    @apply border-night-line;
+  }
+  .rule:last-child {
+    @apply border-b-0;
+  }
+}
+
+@layer utilities {
+  /* Room for the iPhone home indicator under the mobile tab bar. */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
